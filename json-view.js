@@ -1,6 +1,6 @@
 // Add polyfill for Array.isArray() if needed
 
-(function () {
+(function (global) {
     var TYPE_WHITESPACE = 'whitespace',
         TYPE_LINE_BREAK = 'line_break',
         TYPE_STRING = 'string',
@@ -169,5 +169,9 @@
         return options.prepend + options.html[OUT](syntaxTree) + options.append;
     }
 
-    return jsonview;
-})();
+    if (typeof module !== TYPE_UNDEFINED && typeof module.exports !== TYPE_UNDEFINED) {
+        module.exports = jsonview;
+    } else 
+        global.jsonview = jsonview;
+    }
+})(this);
