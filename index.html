@@ -6,16 +6,19 @@
     <title>json-view by chrisakers</title>
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="stylesheets/content.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="json-view.js"></script>
     <script src="javascripts/main.js"></script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
+    <script>
+        var bttf_json = '{"title":"Back to the Future","year":"1985","rated":"PG","released":"Wed Jul 03 1985 12:00:00 GMT-0400","runtime":6960000,"genre":["Adventure","Comedy","Sci-Fi"],"director":"Robert Zemeckis","writer":["Robert Zemeckis","Bob Gale"],"actors":["Michael J. Fox","Christopher Lloyd","Lea Thompson","Crispin Glover"],"plot":"A teenager is accidentally sent 30 years into the past and must make sure his high-school-age parents unite in order to save his own existence.","language":"English","metascore":"86","IMDB":{"rating":8.5,"votes":493499,"id":"tt0088763"}}';
+    </script>
   </head>
   <body>
-
       <header>
         <h1>json-view</h1>
         <p>An extensible JSON prettifier that creates a semantic html view of the JSON.</p>
@@ -39,10 +42,20 @@
         <ul></ul>
       </nav>
       <section>
-        <h1>
-<a name="json-view" class="anchor" href="#json-view"><span class="octicon octicon-link"></span></a>json-view</h1>
+        <h1><a name="json-view" class="anchor" href="#json-view"><span class="octicon octicon-link"></span></a>json-view</h1>
 
 <p>An extensible JSON prettifier that creates a semantic html view of the JSON.</p>
+
+<p>json-view takes in a JSON string and returns an HTML representation. This representation is structured semantically which makes it easy to format and add interactivity.</p>
+
+<h2>Examples:</h2>
+
+Given the following JSON:
+<pre><script>document.write(bttf_json);</script></pre>
+
+With the default options, json-view returns HTML like:
+<pre><script>document.write(jsonview(bttf_json));</script></pre>
+
       </section>
       <footer>
         <p>Project maintained by <a href="https://github.com/chrisakers">chrisakers</a></p>
