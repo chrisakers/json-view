@@ -171,7 +171,7 @@
 
     if (typeof module !== TYPE_UNDEFINED && typeof module.exports !== TYPE_UNDEFINED) {
         module.exports = jsonview;
-    } else 
+    } else {
         global.jsonview = jsonview;
     }
 })(this);
