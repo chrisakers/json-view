@@ -15,7 +15,7 @@
     <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <script>
-        var bttf_json = '{"title":"Back to the Future","year":"1985","rated":"PG","released":"Wed Jul 03 1985 12:00:00 GMT-0400","runtime":6960000,"genre":["Adventure","Comedy","Sci-Fi"],"director":"Robert Zemeckis","writer":["Robert Zemeckis","Bob Gale"],"actors":["Michael J. Fox","Christopher Lloyd","Lea Thompson","Crispin Glover"],"plot":"A teenager is accidentally sent 30 years into the past and must make sure his high-school-age parents unite in order to save his own existence.","language":"English","metascore":"86","IMDB":{"rating":8.5,"votes":493499,"id":"tt0088763"}}';
+        var bttf_json = '{"title":"Back to the Future","year":1985,"rated":"PG","released":"Wed Jul 03 1985 12:00:00 GMT-0400","runtime":6960000,"genre":["Adventure","Comedy","Sci-Fi"],"director":"Robert Zemeckis","writer":["Robert Zemeckis","Bob Gale"],"actors":["Michael J. Fox","Christopher Lloyd","Lea Thompson","Crispin Glover"],"plot":"A teenager is accidentally sent 30 years into the past and must make sure his high-school-age parents unite in order to save his own existence.","language":"English","metascore":86,"IMDB":{"rating":8.5,"votes":493499,"id":"tt0088763"}}';
     </script>
   </head>
   <body>
@@ -50,11 +50,68 @@
 
 <h2>Examples:</h2>
 
+<div id=given>
 Given the following JSON:
 <pre><script>document.write(bttf_json);</script></pre>
+</div>
 
-With the default options, json-view returns HTML like:
-<pre><script>document.write(jsonview(bttf_json));</script></pre>
+<div id=def>
+With the default options, json-view returns the formatted json in a <code>pre</code> element indented with 4 spaces:
+<script>document.write(jsonview(bttf_json));</script>
+</div>
+
+<div id=color>
+Since the markup is structured semantically, is simple to format the JSON with CSS: (the #color prefix is not necessary, I've just used it to affect only this instance)
+<style class=viz>#color .object_key { color: #881391; }
+#color .object_value > .string,
+#color .array > .string { color: #c41a16; }
+#color .number { color: #1c00cf; }
+</style>
+<script>document.write(jsonview(bttf_json));</script>
+</div>
+
+<div id=interact>
+It's also simple to add interactivity and additional functionality to the JSON view. This example adds collapsing functionality to nested objects and arrays:
+<script class=viz>$(function () {
+    $('#interact .object_value > .array, #interact .object_value > .object')
+        .parent().prevAll('.object_key')
+        .click(function () {
+            $(this).parent().toggleClass('open');
+        })
+        .parent().addClass('collapsible');
+});
+</script>
+<style class=viz>.collapsible { position: relative; }
+.collapsible > .object_value > .object > *,
+.collapsible > .object_value > .array > * { display: none; }
+.collapsible > .object_value > .object > .object_open_bracket,
+.collapsible > .object_value > .object > .object_close_bracket,
+.collapsible > .object_value > .array > .array_open_bracket,
+.collapsible > .object_value > .array > .array_close_bracket {
+    display: initial;
+}
+.collapsible > .object_value > .object > .object_open_bracket::after,
+.collapsible > .object_value > .array > .array_open_bracket::after {
+    content: "...";
+}
+.collapsible > .object_key { cursor: pointer; }
+.collapsible > .object_key::before {
+    content: "▶";
+    position: absolute;
+    top:0;
+    left:-10px;
+    opacity:0.4;
+}
+.collapsible.open > .object_key::before { content: "▼"; }
+.collapsible.open > .object_value > .object > *,
+.collapsible.open > .object_value > .array > * { display: initial; }
+.collapsible.open > .object_value > .object > .object_open_bracket::after,
+.collapsible.open > .object_value > .array > .array_open_bracket::after {
+    content: none;
+}
+</style>
+<script>document.write(jsonview(bttf_json));</script>
+</div>
 
       </section>
       <footer>

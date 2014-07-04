@@ -17,6 +17,7 @@
         TYPE_OBJECT = 'object',
         TYPE_OBJECT_OPEN_BRACKET = 'object_open_bracket',
         TYPE_OBJECT_CLOSE_BRACKET = 'object_close_bracket',
+        TYPE_OBJECT_KEY_VALUE_PAIR = 'object_key_value_pair',
         TYPE_OBJECT_KEY = 'object_key',
         TYPE_OBJECT_VALUE = 'object_value',
         TYPE_OBJECT_KEY_VALUE_SEPARATOR = 'object_key_value_separator',
@@ -63,10 +64,12 @@
                     content.push({type: TYPE_LINE_BREAK, content: opts.eol});
                     keys.forEach(function (key) {
                         content.push({type: TYPE_WHITESPACE, content: opts.indent(lvl + 1)});
-                        content.push({type: TYPE_OBJECT_KEY, content: opts.serializers[TYPE_STRING](key)});
-                        content.push({type: TYPE_OBJECT_KEY_VALUE_SEPARATOR, content: ':'});
-                        content.push({type: TYPE_WHITESPACE, content: ' '});
-                        content.push({type: TYPE_OBJECT_VALUE, content: opts.serializers[OUT](o[key], lvl + 1, opts)});
+                        content.push({type: TYPE_OBJECT_KEY_VALUE_PAIR, content: [
+                            {type: TYPE_OBJECT_KEY, content: opts.serializers[TYPE_STRING](key)},
+                            {type: TYPE_OBJECT_KEY_VALUE_SEPARATOR, content: ':'},
+                            {type: TYPE_WHITESPACE, content: ' '},
+                            {type: TYPE_OBJECT_VALUE, content: opts.serializers[OUT](o[key], lvl + 1, opts)}
+                        ]});
                         content.push({type: TYPE_OBJECT_PAIRS_SEPARATOR, content: ','});
                         content.push({type: TYPE_LINE_BREAK, content: opts.eol});
                     });

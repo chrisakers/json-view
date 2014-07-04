@@ -1,11 +1,33 @@
 pre {
     background-color: #fff;
-    white-space: pre-line;
     color: #333;
     font-size: 0.86em;
     line-height: 1.5em;
 }
 
-#jsrc {
-
+code {
+    background-color: transparent;
+    color: #333;
+    font-size: inherit;
+    text-shadow: none;
+    padding: 0;
 }
+
+#given pre {
+    white-space: pre-line;
+}
+
+.viz {
+    display: block;
+    border: 1px solid #c7c7c7;
+    white-space: pre;
+    font-family: monospace;
+    padding: 8px 15px;
+    margin-bottom: 6px;
+    font-size: 0.8em;
+}
+
+#interact .object_key { color: #881391; }
+#interact .object_value > .string,
+#interact .array > .string { color: #c41a16; }
+#interact .number { color: #1c00cf; }
