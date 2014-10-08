@@ -1,33 +1,39 @@
 pre {
-    background-color: #fff;
-    color: #333;
-    font-size: 0.86em;
+    font-size: .86em;
     line-height: 1.5em;
+    color: #333;
+    background-color: #fff;
 }
 
 code {
-    background-color: transparent;
-    color: #333;
     font-size: inherit;
-    text-shadow: none;
     padding: 0;
+    color: #333;
+    background-color: transparent;
+    text-shadow: none;
 }
 
-#given pre {
+.example {
+    margin: 40px 0 20px;
+    padding: 0;
+    border-width: 0;
+    box-shadow: none;
+}
+
+.example pre {
     white-space: pre-line;
 }
 
-.viz {
-    display: block;
-    border: 1px solid #c7c7c7;
-    white-space: pre;
-    font-family: monospace;
-    padding: 8px 15px;
-    margin-bottom: 6px;
-    font-size: 0.8em;
+.example > div {
+    margin-top: 10px;
 }
 
-#interact .object_key { color: #881391; }
-#interact .object_value > .string,
-#interact .array > .string { color: #c41a16; }
-#interact .number { color: #1c00cf; }
+.viz {
+    font-family: monospace;
+    font-size: .8em;
+    display: block;
+    margin-bottom: 6px;
+    padding: 8px 15px;
+    white-space: pre;
+    border: 1px solid #c7c7c7;
+}

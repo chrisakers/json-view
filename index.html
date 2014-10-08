@@ -8,15 +8,12 @@
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
     <link rel="stylesheet" href="stylesheets/content.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="json-view.js"></script>
     <script src="javascripts/main.js"></script>
+    <script src="javascripts/bttf_json.js"></script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <script>
-        var bttf_json = '{"title":"Back to the Future","year":1985,"rated":"PG","released":"Wed Jul 03 1985 12:00:00 GMT-0400","runtime":6960000,"genre":["Adventure","Comedy","Sci-Fi"],"director":"Robert Zemeckis","writer":["Robert Zemeckis","Bob Gale"],"actors":["Michael J. Fox","Christopher Lloyd","Lea Thompson","Crispin Glover"],"plot":"A teenager is accidentally sent 30 years into the past and must make sure his high-school-age parents unite in order to save his own existence.","language":"English","metascore":86,"IMDB":{"rating":8.5,"votes":493499,"id":"tt0088763"}}';
-    </script>
   </head>
   <body>
       <header>
@@ -28,13 +25,6 @@
         <span id="logo"></span>
 
         <a href="https://github.com/chrisakers/json-view" class="button fork"><strong>View On GitHub</strong></a>
-        <div class="downloads">
-          <span>Downloads:</span>
-          <ul>
-            <li><a href="https://github.com/chrisakers/json-view/zipball/master" class="button">ZIP</a></li>
-            <li><a href="https://github.com/chrisakers/json-view/tarball/master" class="button">TAR</a></li>
-          </ul>
-        </div>
       </div><!-- end banner -->
 
     <div class="wrapper">
@@ -50,68 +40,30 @@
 
 <h2>Examples:</h2>
 
-<div id=given>
+<section class=example>
 Given the following JSON:
 <pre><script>document.write(bttf_json);</script></pre>
-</div>
+</section>
 
-<div id=def>
+<section class=example>
 With the default options, json-view returns the formatted json in a <code>pre</code> element indented with 4 spaces:
-<script>document.write(jsonview(bttf_json));</script>
-</div>
+<p data-height="550" data-theme-id="0" data-slug-hash="avirB" data-default-tab="result" data-user="chrisakers" class='codepen'>See the Pen <a href='http://codepen.io/chrisakers/pen/avirB/'>avirB</a> by Chris Akers (<a href='http://codepen.io/chrisakers'>@chrisakers</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+</section>
 
-<div id=color>
-Since the markup is structured semantically, is simple to format the JSON with CSS: (the #color prefix is not necessary, I've just used it to affect only this instance)
-<style class=viz>#color .object_key { color: #881391; }
-#color .object_value > .string,
-#color .array > .string { color: #c41a16; }
-#color .number { color: #1c00cf; }
-</style>
-<script>document.write(jsonview(bttf_json));</script>
-</div>
+<section class=example>
+Since the markup is structured semantically, it's simple to format the JSON with CSS:
+<p data-height="550" data-theme-id="0" data-slug-hash="gyChB" data-default-tab="result" data-user="chrisakers" class='codepen'>See the Pen <a href='http://codepen.io/chrisakers/pen/gyChB/'>gyChB</a> by Chris Akers (<a href='http://codepen.io/chrisakers'>@chrisakers</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+</section>
 
-<div id=interact>
+<section class=example>
 It's also simple to add interactivity and additional functionality to the JSON view. This example adds collapsing functionality to nested objects and arrays:
-<script class=viz>$(function () {
-    $('#interact .object_value > .array, #interact .object_value > .object')
-        .parent().prevAll('.object_key')
-        .click(function () {
-            $(this).parent().toggleClass('open');
-        })
-        .parent().addClass('collapsible');
-});
-</script>
-<style class=viz>.collapsible { position: relative; }
-.collapsible > .object_value > .object > *,
-.collapsible > .object_value > .array > * { display: none; }
-.collapsible > .object_value > .object > .object_open_bracket,
-.collapsible > .object_value > .object > .object_close_bracket,
-.collapsible > .object_value > .array > .array_open_bracket,
-.collapsible > .object_value > .array > .array_close_bracket {
-    display: initial;
-}
-.collapsible > .object_value > .object > .object_open_bracket::after,
-.collapsible > .object_value > .array > .array_open_bracket::after {
-    content: "...";
-}
-.collapsible > .object_key { cursor: pointer; }
-.collapsible > .object_key::before {
-    content: "▶";
-    position: absolute;
-    top:0;
-    left:-10px;
-    opacity:0.4;
-}
-.collapsible.open > .object_key::before { content: "▼"; }
-.collapsible.open > .object_value > .object > *,
-.collapsible.open > .object_value > .array > * { display: initial; }
-.collapsible.open > .object_value > .object > .object_open_bracket::after,
-.collapsible.open > .object_value > .array > .array_open_bracket::after {
-    content: none;
-}
-</style>
-<script>document.write(jsonview(bttf_json));</script>
-</div>
+<p data-height="550" data-theme-id="0" data-slug-hash="duBhE" data-default-tab="result" data-user="chrisakers" class='codepen'>See the Pen <a href='http://codepen.io/chrisakers/pen/duBhE/'>duBhE</a> by Chris Akers (<a href='http://codepen.io/chrisakers'>@chrisakers</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+</section>
+
+<section class=example>
+The <code>jsonview</code> function can take a second argument to specify options. The options argument can change the indention amount and character, the wrapper html element, and a number of other options. Here we change the indentation amount and add a class to the wrapper element.
+<p data-height="550" data-theme-id="0" data-slug-hash="qyiAF" data-default-tab="result" data-user="chrisakers" class='codepen'>See the Pen <a href='http://codepen.io/chrisakers/pen/qyiAF/'>qyiAF</a> by Chris Akers (<a href='http://codepen.io/chrisakers'>@chrisakers</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+</section>
 
       </section>
       <footer>
@@ -121,5 +73,6 @@ It's also simple to add interactivity and additional functionality to the JSON v
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     
+    <script async src="//codepen.io/assets/embed/ei.js"></script>
   </body>
 </html>
