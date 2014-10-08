@@ -138,8 +138,8 @@
     
     function obj() {
         var o = {},
-           i = 0,
-           len = arguments.length;
+            i = 0,
+            len = arguments.length;
         while (i < len) {
            o[arguments[i++]] = arguments[i++];
         }
